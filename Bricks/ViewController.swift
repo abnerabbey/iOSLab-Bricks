@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import SpriteKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var skView: SKView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let gameScene = GameScene(size: skView.bounds.size)
+        gameScene.scaleMode = .aspectFill
+        
+        skView.presentScene(gameScene)
     }
 
 
