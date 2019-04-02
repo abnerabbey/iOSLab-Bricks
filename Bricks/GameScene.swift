@@ -15,6 +15,15 @@ class GameScene: SKScene {
         self.backgroundColor = .white
         view.showsFPS = true
         view.showsNodeCount = true
+        
+        let ballGame = Ball(radius: 10, color: .orange)
+        ballGame.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
+        
+        ballGame.physicsBody = SKPhysicsBody(circleOfRadius: 10)
+        
+        
+        addChild(ballGame)
+        
     }
 
 }

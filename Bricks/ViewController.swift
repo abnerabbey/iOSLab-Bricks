@@ -20,6 +20,10 @@ class ViewController: UIViewController {
         gameScene.scaleMode = .aspectFill
         
         skView.presentScene(gameScene)
+        
+        gameScene.physicsBody = SKPhysicsBody(edgeLoopFrom: gameScene.frame)
+        
+        //gameScene.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
     }
 
 
