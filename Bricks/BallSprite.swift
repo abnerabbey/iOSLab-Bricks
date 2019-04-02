@@ -9,18 +9,16 @@
 import SpriteKit
 import UIKit
 
-class Ball: SKShapeNode {
+class Ball: SKSpriteNode {
     required init?(coder aDecoder: NSCoder) {fatalError("init(coder:) has not been implemented")}
     //Here will come the ball configuration
     
-    init(radius: CGFloat, color: UIColor) {
-        super.init()
+    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+        super.init(texture: texture, color: color, size: size)
         
-        let diameter = radius * 2
-        self.path = CGPath(ellipseIn: CGRect(origin: .zero, size: CGSize(width: diameter, height: diameter)), transform: nil)
-        
-        self.fillColor = color
     }
+        
+        
     
 }
 
