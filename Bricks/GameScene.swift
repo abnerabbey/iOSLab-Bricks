@@ -19,12 +19,18 @@ class GameScene: SKScene {
         view.showsFPS = true
         view.showsNodeCount = true
         
+        setupPaddle()
+    }
+    
+    func setupPaddle() {
+        
         let paddleSize = CGSize(width: 150, height: 25)
-        let paddleOriginPosition = CGPoint(x: view.frame.width / 2, y: 100)
+        let paddleOriginPosition = CGPoint(x: view!.frame.width / 2, y: 100)
         
         paddle = Paddle(color: .cyan, size: paddleSize , position: paddleOriginPosition)
         
         addChild(paddle!.node)
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
