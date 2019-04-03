@@ -18,13 +18,17 @@ class GameScene: SKScene {
         
        view.showsPhysics = true
         
+       setUpBall()
+    
+    }
+    
+    func setUpBall(){
+        
         let ballGame = Ball(texture: SKTexture(imageNamed: "icon"), color: .orange, size: CGSize(width: 18, height: 18))
-       
         ballGame.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
-
+        
         
         addChild(ballGame)
-    
     }
 
 }

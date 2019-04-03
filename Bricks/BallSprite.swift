@@ -24,6 +24,7 @@ class Ball: SKSpriteNode {
         physicsBody?.allowsRotation = false
        
         
+        
     }
         
         
