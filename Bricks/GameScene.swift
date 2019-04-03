@@ -19,9 +19,9 @@ class GameScene: SKScene {
         view.showsFPS = true
         view.showsNodeCount = true
         
-       view.showsPhysics = true
-        
-       setUpBall()
+        view.showsPhysics = true
+        setupPaddle()
+        setUpBall()
     
     }
     
@@ -32,7 +32,7 @@ class GameScene: SKScene {
         
         
         addChild(ballGame)
-        setupPaddle()
+        
     }
     
     func setupPaddle() {
@@ -45,6 +45,7 @@ class GameScene: SKScene {
         addChild(paddle!.node)
         
     }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
