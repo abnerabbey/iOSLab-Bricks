@@ -21,7 +21,7 @@ class GameScene: SKScene {
         let ballGame = Ball(texture: SKTexture(imageNamed: "icon"), color: .orange, size: CGSize(width: 18, height: 18))
        
         ballGame.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
-        ballGame.physicsBody = SKPhysicsBody(circleOfRadius: 10)
+
         
         addChild(ballGame)
     

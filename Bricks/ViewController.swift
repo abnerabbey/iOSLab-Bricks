@@ -22,10 +22,9 @@ class ViewController: UIViewController {
         skView.presentScene(gameScene)
         
         
-        
+        // Change this when the paddle is implemented
         gameScene.physicsBody = SKPhysicsBody(edgeLoopFrom: gameScene.frame)
         
-        //gameScene.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
     }
 
 
