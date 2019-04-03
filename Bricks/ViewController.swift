@@ -20,6 +20,11 @@ class ViewController: UIViewController {
         gameScene.scaleMode = .aspectFill
         
         skView.presentScene(gameScene)
+        
+        
+        // Change this when the paddle is implemented
+        gameScene.physicsBody = SKPhysicsBody(edgeLoopFrom: gameScene.frame)
+        
     }
 
 
