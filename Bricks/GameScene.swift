@@ -32,7 +32,6 @@ class GameScene: SKScene {
         
         
         addChild(ballGame)
-    }
         setupPaddle()
     }
     
