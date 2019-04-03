@@ -19,7 +19,7 @@ class Brick: SKSpriteNode {
         super.init(texture: texture, color: color, size: size)
         
         physicsBody = SKPhysicsBody(rectangleOf: size)
-        physicsBody?.isDynamic = true
+        physicsBody?.isDynamic = false
     }
     
 }

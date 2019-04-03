@@ -11,6 +11,8 @@ import SpriteKit
 
 class GameScene: SKScene {
     
+    private var bricksHandler = BricksHandler()
+    
     var paddle: Paddle?
     var movingPaddle = false
     
@@ -20,6 +22,7 @@ class GameScene: SKScene {
         view.showsNodeCount = true
         
         view.showsPhysics = true
+        bricksHandler.loadBricks(rows: 5, in: self)
         setupPaddle()
         setUpBall()
     
