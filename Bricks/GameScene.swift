@@ -11,6 +11,8 @@ import SpriteKit
 
 class GameScene: SKScene {
     
+    private var bricksHandler = BricksHandler()
+    
     var paddle: Paddle?
     var movingPaddle = false
     
@@ -19,9 +21,10 @@ class GameScene: SKScene {
         view.showsFPS = true
         view.showsNodeCount = true
         
-       view.showsPhysics = true
-        
-       setUpBall()
+        view.showsPhysics = true
+        bricksHandler.loadBricks(rows: 5, in: self)
+        setupPaddle()
+        setUpBall()
     
     }
     
@@ -32,7 +35,7 @@ class GameScene: SKScene {
         
         
         addChild(ballGame)
-        setupPaddle()
+        
     }
     
     func setupPaddle() {
@@ -45,6 +48,7 @@ class GameScene: SKScene {
         addChild(paddle!.node)
         
     }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
