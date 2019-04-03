@@ -15,6 +15,7 @@
 		07B8C8C5225290BC00629AD2 /* BricksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B8C8C4225290BC00629AD2 /* BricksTests.swift */; };
 		07B8C8D0225290BC00629AD2 /* BricksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B8C8CF225290BC00629AD2 /* BricksUITests.swift */; };
 		0B376FA42252C8AB00012201 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B376FA32252C8AB00012201 /* GameScene.swift */; };
+		D40253FE2253F01000B44367 /* Paddle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40253FD2253F01000B44367 /* Paddle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		07B8C8CF225290BC00629AD2 /* BricksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BricksUITests.swift; sourceTree = "<group>"; };
 		07B8C8D1225290BC00629AD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B376FA32252C8AB00012201 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		D40253FD2253F01000B44367 /* Paddle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paddle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				07B8C8AF225290BB00629AD2 /* AppDelegate.swift */,
 				07B8C8B1225290BB00629AD2 /* ViewController.swift */,
 				0B376FA32252C8AB00012201 /* GameScene.swift */,
+				D40253FD2253F01000B44367 /* Paddle.swift */,
 				07B8C8B3225290BB00629AD2 /* Main.storyboard */,
 				07B8C8B6225290BC00629AD2 /* Assets.xcassets */,
 				07B8C8B8225290BC00629AD2 /* LaunchScreen.storyboard */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B376FA42252C8AB00012201 /* GameScene.swift in Sources */,
+				D40253FE2253F01000B44367 /* Paddle.swift in Sources */,
 				07B8C8B2225290BB00629AD2 /* ViewController.swift in Sources */,
 				07B8C8B0225290BB00629AD2 /* AppDelegate.swift in Sources */,
 			);
@@ -437,6 +441,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 27MUBRMHKJ;
 				INFOPLIST_FILE = Bricks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -454,6 +459,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 27MUBRMHKJ;
 				INFOPLIST_FILE = Bricks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
