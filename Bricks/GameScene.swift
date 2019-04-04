@@ -9,7 +9,7 @@
 import UIKit
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var bricksHandler = BricksHandler()
     
@@ -22,6 +22,8 @@ class GameScene: SKScene {
         view.showsNodeCount = true
         
         view.showsPhysics = true
+        physicsWorld.contactDelegate = self
+        
         bricksHandler.loadBricks(rows: 5, in: self)
         setupPaddle()
         setUpBall()
@@ -32,6 +34,8 @@ class GameScene: SKScene {
         
         let ballGame = Ball(texture: SKTexture(imageNamed: "icon"), color: .orange, size: CGSize(width: 18, height: 18))
         ballGame.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
+        ballGame.physicsBody!.contactTestBitMask = ballGame.physicsBody!.collisionBitMask
+        ballGame.name = "ball"
         
         
         addChild(ballGame)
@@ -44,6 +48,7 @@ class GameScene: SKScene {
         let paddleOriginPosition = CGPoint(x: view!.frame.width / 2, y: 100)
         
         paddle = Paddle(color: .cyan, size: paddleSize , position: paddleOriginPosition)
+        
         
         addChild(paddle!.node)
         
@@ -87,5 +92,26 @@ class GameScene: SKScene {
         movingPaddle = false
     }
     
+    
+    func collisionBetween(ballGame: SKNode, object: SKNode) {
+        if object.name == "brick" {
+            print("")
+        }
+        else if object.name == "paddle" {
+            print("paddle")
+            ballGame.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 5.0))
+        }
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        guard let nodeA = contact.bodyA.node else { return }
+        guard let nodeB = contact.bodyB.node else { return }
+        
+        if nodeA.name == "ball" {
+            collisionBetween(ballGame: nodeA, object: nodeB)
+        } else if nodeB.name == "ball" {
+            collisionBetween(ballGame: nodeB, object: nodeA)
+        }
+    }
 
 }

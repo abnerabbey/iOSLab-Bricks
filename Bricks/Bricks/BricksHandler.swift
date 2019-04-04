@@ -25,6 +25,7 @@ class BricksHandler {
                 let x = brick.size.width/2 + CGFloat(xOffset)
                 let y = (scene.frame.height - brick.size.height/2) - CGFloat(row*Int(brickSize.height))
                 brick.position = CGPoint(x: x, y: y)
+                brick.name = "brick"
                 scene.addChild(brick)
             }
         }

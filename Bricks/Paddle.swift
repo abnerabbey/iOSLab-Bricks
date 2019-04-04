@@ -21,6 +21,9 @@ struct Paddle {
     init(color: UIColor, size: CGSize, position: CGPoint) {
         node = SKSpriteNode(color: color, size: size)
         node.position = position
+        node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 150, height: 25))
+        node.physicsBody?.isDynamic = false
+        node.name = "paddle"
         self.position = position
     }
 }

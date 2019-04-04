@@ -21,6 +21,7 @@ class Ball: SKSpriteNode {
         physicsBody = SKPhysicsBody(circleOfRadius: 10)
         physicsBody?.isDynamic = true
         physicsBody?.affectedByGravity = true //change to false when the Game Dynamics are implemented
+        physicsBody?.restitution = 0.7
         physicsBody?.allowsRotation = false
        
         
