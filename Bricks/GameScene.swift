@@ -16,14 +16,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var paddle: Paddle?
     var movingPaddle = false
     
+    
     override func didMove(to view: SKView) {
         self.backgroundColor = .white
         view.showsFPS = true
         view.showsNodeCount = true
-        
         view.showsPhysics = true
         physicsWorld.contactDelegate = self
-        
+                
         bricksHandler.loadBricks(rows: 5, in: self)
         setupPaddle()
         setUpBall()
@@ -34,7 +34,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let ballGame = Ball(texture: SKTexture(imageNamed: "icon"), color: .orange, size: CGSize(width: 18, height: 18))
         ballGame.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
-        ballGame.physicsBody!.contactTestBitMask = ballGame.physicsBody!.collisionBitMask
         ballGame.name = "ball"
         
         
@@ -92,25 +91,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         movingPaddle = false
     }
     
-    
-    func collisionBetween(ballGame: SKNode, object: SKNode) {
-        if object.name == "brick" {
-            print("")
-        }
-        else if object.name == "paddle" {
-            print("paddle")
-            ballGame.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 5.0))
-        }
-    }
-    
     func didBegin(_ contact: SKPhysicsContact) {
-        guard let nodeA = contact.bodyA.node else { return }
-        guard let nodeB = contact.bodyB.node else { return }
+       
         
-        if nodeA.name == "ball" {
-            collisionBetween(ballGame: nodeA, object: nodeB)
-        } else if nodeB.name == "ball" {
-            collisionBetween(ballGame: nodeB, object: nodeA)
+        if contact.bodyA.node?.name == "brick" {
+            print("brick")
+            
+        } else if contact.bodyB.node?.name == "ball" {
+            print("paddle")
         }
     }
 

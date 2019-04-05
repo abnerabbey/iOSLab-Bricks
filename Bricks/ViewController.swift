@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         
         // Change this when the paddle is implemented
         gameScene.physicsBody = SKPhysicsBody(edgeLoopFrom: gameScene.frame)
+        gameScene.physicsBody?.friction = 0
         
     }
 

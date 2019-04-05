@@ -17,13 +17,18 @@ struct Paddle {
     }
     
     let node: SKNode
+    static let paddleCategory : UInt32 = 0x1 << 1
     
     init(color: UIColor, size: CGSize, position: CGPoint) {
         node = SKSpriteNode(color: color, size: size)
+        node.name = "paddle"
         node.position = position
         node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 150, height: 25))
         node.physicsBody?.isDynamic = false
-        node.name = "paddle"
+        node.physicsBody?.friction = 0
+        node.physicsBody?.categoryBitMask = Paddle.paddleCategory
+        node.physicsBody?.contactTestBitMask = Ball.ballCategory
+
         self.position = position
     }
 }
