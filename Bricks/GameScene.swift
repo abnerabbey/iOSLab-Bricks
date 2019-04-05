@@ -9,19 +9,21 @@
 import UIKit
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var bricksHandler = BricksHandler()
     
     var paddle: Paddle?
     var movingPaddle = false
     
+    
     override func didMove(to view: SKView) {
         self.backgroundColor = .white
         view.showsFPS = true
         view.showsNodeCount = true
-        
         view.showsPhysics = true
+        physicsWorld.contactDelegate = self
+                
         bricksHandler.loadBricks(rows: 5, in: self)
         setupPaddle()
         setUpBall()
@@ -32,6 +34,7 @@ class GameScene: SKScene {
         
         let ballGame = Ball(texture: SKTexture(imageNamed: "icon"), color: .orange, size: CGSize(width: 18, height: 18))
         ballGame.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
+        ballGame.name = "ball"
         
         
         addChild(ballGame)
@@ -44,6 +47,7 @@ class GameScene: SKScene {
         let paddleOriginPosition = CGPoint(x: view!.frame.width / 2, y: 100)
         
         paddle = Paddle(color: .cyan, size: paddleSize , position: paddleOriginPosition)
+        
         
         addChild(paddle!.node)
         
@@ -87,5 +91,15 @@ class GameScene: SKScene {
         movingPaddle = false
     }
     
+    func didBegin(_ contact: SKPhysicsContact) {
+       
+        
+        if contact.bodyA.node?.name == "brick" {
+            print("brick")
+            
+        } else if contact.bodyB.node?.name == "ball" {
+            print("paddle")
+        }
+    }
 
 }
