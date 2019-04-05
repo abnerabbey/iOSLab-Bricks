@@ -114,6 +114,7 @@
 				07B8C8B1225290BB00629AD2 /* ViewController.swift */,
 				0B4344EF2253CA2900870A31 /* BallSprite.swift */,
 				0B376FA32252C8AB00012201 /* GameScene.swift */,
+				5B18194C2256DE8D00E37460 /* Extensions.swift */,
 				D40253FD2253F01000B44367 /* Paddle.swift */,
 				07B8C8B3225290BB00629AD2 /* Main.storyboard */,
 				07B8C8B6225290BC00629AD2 /* Assets.xcassets */,
@@ -145,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				B239C0322255402600526D2A /* BricksHandler.swift */,
-				5B18194C2256DE8D00E37460 /* Extensions.swift */,
 				B239C02E22553B0D00526D2A /* Brick.swift */,
 			);
 			path = Bricks;
