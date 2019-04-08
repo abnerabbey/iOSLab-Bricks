@@ -16,6 +16,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var paddle: Paddle?
     var movingPaddle = false
     
+    var gameScore: SKLabelNode!
+    var score = 0 {
+        willSet {
+            gameScore.text = "Score: \(newValue)"
+        }
+    }
+    
     
     override func didMove(to view: SKView) {
         self.backgroundColor = .white
@@ -27,7 +34,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bricksHandler.loadBricks(rows: 5, in: self)
         setupPaddle()
         setUpBall()
+        setupScoreLabel()
     
+    }
+    
+    func setupScoreLabel() {
+        gameScore = SKLabelNode(fontNamed: "Chalkduster")
+        gameScore.horizontalAlignmentMode = .left
+        gameScore.fontColor = .black
+        gameScore.fontSize = 20
+        gameScore.position = CGPoint(x: 10, y: 60)
+        
+        
+        score = 0
+        
+        addChild(gameScore)
     }
     
     func setUpBall(){
