@@ -117,10 +117,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if contact.bodyA.node?.name == "brick" {
             print("brick")
+            removeBrick(contact.bodyA.node!)
             
         } else if contact.bodyB.node?.name == "ball" {
             print("paddle")
         }
+    }
+    
+    func removeBrick(_ brick: SKNode){
+        brick.removeFromParent()
     }
 
 }
