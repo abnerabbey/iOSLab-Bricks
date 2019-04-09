@@ -118,6 +118,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if contact.bodyA.node?.name == "brick" {
             print("brick")
             removeBrick(contact.bodyA.node!)
+            score += 1
             
         } else if contact.bodyB.node?.name == "ball" {
             print("paddle")
@@ -125,7 +126,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func removeBrick(_ brick: SKNode){
+        let explosion = SKEmitterNode(fileNamed: "explosion")!
+        explosion.position = brick.position
         brick.removeFromParent()
+        addChild(explosion)
+        
     }
 
 }
