@@ -12,7 +12,6 @@ import UIKit
 class Ball: SKSpriteNode {
     required init?(coder aDecoder: NSCoder) {fatalError("init(coder:) has not been implemented")}
     
-    
     //Here will come the ball configuration
     static let ballCategory : UInt32 = 0x1 << 0
     
@@ -24,12 +23,12 @@ class Ball: SKSpriteNode {
         physicsBody?.affectedByGravity = true //change to false when the Game Dynamics are implemented
         physicsBody?.restitution = 1.0
         physicsBody?.linearDamping = 0
-        physicsBody?.allowsRotation = false
+        physicsBody?.allowsRotation = true
         physicsBody?.categoryBitMask = Ball.ballCategory
-        physicsBody?.contactTestBitMask = Paddle.paddleCategory | Brick.brickCategory
-        
+        physicsBody?.contactTestBitMask = Paddle.paddleCategory | Brick.brickCategory | GameScene.bottomCategory
         
     }
+    
         
         
     
