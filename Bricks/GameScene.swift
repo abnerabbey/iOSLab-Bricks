@@ -12,6 +12,7 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var bricksHandler = BricksHandler()
+    private var endedGameDelegate: GameDelegate?
     
     var paddle: Paddle?
     var movingPaddle = false
@@ -142,6 +143,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        
+        print("now calling game delegate")
+        endedGameDelegate?.gameHasEnded()
+        
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
         

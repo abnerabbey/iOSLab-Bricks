@@ -9,7 +9,19 @@
 import UIKit
 import SpriteKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, GameDelegate {
+    
+    func gameHasEnded() {
+        print("Game has ended")
+    }
+    
+    
+    let menuView : UIView = {
+        let view = UIView()
+        view.backgroundColor = .blue
+        view.frame = CGRect(x: view.frame.midX, y: view.frame.midY, width: 100, height: 100)
+        return view
+    }()
 
     @IBOutlet weak var skView: SKView!
     
@@ -20,7 +32,6 @@ class ViewController: UIViewController {
         gameScene.scaleMode = .aspectFill
         
         skView.presentScene(gameScene)
-        
         
         // Change this when the paddle is implemented
         gameScene.physicsBody = SKPhysicsBody(edgeLoopFrom: gameScene.frame)
