@@ -21,6 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         willSet {
             gameScore.text = "Score: \(newValue)"
         }
+    }
     var actualBallPositionX = CGFloat()
     var oldBallPosition = CGFloat()
     
@@ -200,15 +201,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
        
+        func removeBrick(_ brick: SKNode) {
+            let explosion = SKEmitterNode(fileNamed: "explosion")!
+            explosion.position = brick.position
+            brick.removeFromParent()
+            addChild(explosion)
         
-      
-    
-    func removeBrick(_ brick: SKNode){
-        let explosion = SKEmitterNode(fileNamed: "explosion")!
-        explosion.position = brick.position
-        brick.removeFromParent()
-        addChild(explosion)
-        
+        }
+
     }
 
 }
