@@ -145,13 +145,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
         
+        var firstNode: SKNode
+        var secondNode: SKNode
+        
         if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
             firstBody = contact.bodyA
+            firstNode = contact.bodyA.node!
+            
             secondBody = contact.bodyB
+            secondNode = contact.bodyB.node!
         }
         else {
             firstBody = contact.bodyB
+            firstNode = contact.bodyB.node!
+            
             secondBody = contact.bodyA
+            secondNode = contact.bodyA.node!
         }
         
         if firstBody.categoryBitMask == Ball.ballCategory && secondBody.categoryBitMask == Paddle.paddleCategory {
@@ -198,17 +207,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         else if firstBody.categoryBitMask == Ball.ballCategory && secondBody.categoryBitMask == Brick.brickCategory  {
 //            print("ball&brick")
+            removeBrick(secondNode)
             
         }
        
-        func removeBrick(_ brick: SKNode) {
-            let explosion = SKEmitterNode(fileNamed: "explosion")!
-            explosion.position = brick.position
-            brick.removeFromParent()
-            addChild(explosion)
+    }
+    
+    func removeBrick(_ brick: SKNode) {
+        let explosion = SKEmitterNode(fileNamed: "explosion")!
+        explosion.position = brick.position
+        brick.removeFromParent()
+        score += 1
+        addChild(explosion)
         
-        }
-
     }
 
 }
