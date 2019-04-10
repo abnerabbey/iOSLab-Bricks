@@ -16,6 +16,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var paddle: Paddle?
     var movingPaddle = false
     
+    var actualBallPositionX = CGFloat()
+    var oldBallPosition = CGFloat()
+    
+    var ballDirection: direction = .left
+    
+    enum direction {
+        case left, right
+    }
+    
+    var ballGame = SKSpriteNode()
+    
+    
+    static let bottomCategory : UInt32 = 0x1 << 3
     
     override func didMove(to view: SKView) {
         self.backgroundColor = .white
@@ -27,12 +40,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bricksHandler.loadBricks(rows: 5, in: self)
         setupPaddle()
         setUpBall()
-    
+        bottomBoundary()
+        
     }
     
-    func setUpBall(){
+    func setUpBall() {
         
-        let ballGame = Ball(texture: SKTexture(imageNamed: "icon"), color: .orange, size: CGSize(width: 18, height: 18))
+        ballGame = Ball(texture: SKTexture(imageNamed: "icon"), color: .orange, size: CGSize(width: 18, height: 18))
         ballGame.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
         ballGame.name = "ball"
         
@@ -51,6 +65,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         addChild(paddle!.node)
         
+    }
+    
+    func bottomBoundary() {
+        let bottom =  SKSpriteNode()
+        bottom.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: 1))
+        bottom.physicsBody?.categoryBitMask = GameScene.bottomCategory
+        addChild(bottom)
     }
     
     
@@ -91,15 +112,76 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         movingPaddle = false
     }
     
-    func didBegin(_ contact: SKPhysicsContact) {
-       
+    override func update(_ currentTime: TimeInterval) {
+        actualBallPositionX = ballGame.position.x
         
-        if contact.bodyA.node?.name == "brick" {
-            print("brick")
-            
-        } else if contact.bodyB.node?.name == "ball" {
-            print("paddle")
+        ballDirection = actualBallPositionX < oldBallPosition ? .left : .right
+        
+        oldBallPosition = actualBallPositionX
+        
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        var firstBody: SKPhysicsBody
+        var secondBody: SKPhysicsBody
+        
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
         }
+        else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        
+        if firstBody.categoryBitMask == Ball.ballCategory && secondBody.categoryBitMask == Paddle.paddleCategory {
+//            print("ball&paddle")
+            guard let childsNodes = self.scene?.children else { return }
+            for child in childsNodes {
+                if child.name == "ball" {
+
+                    let maxSpeed: CGFloat = 1500.0
+                    let xSpeed = CGFloat((child.physicsBody?.velocity.dx)!)
+                    let ySpeed = CGFloat((child.physicsBody?.velocity.dy)!)
+                    let speed = sqrt(xSpeed*xSpeed + ySpeed*ySpeed)
+                    
+//                    print("x:\(xSpeed)   y:\(ySpeed)  s:\(speed)")
+                    
+                    if xSpeed <= 10.0 {
+                        if ballDirection == .left {
+                            child.physicsBody?.applyImpulse(CGVector(dx: -3.0, dy: 0.0))
+                        }
+                        else {
+                            child.physicsBody?.applyImpulse(CGVector(dx: 3.0, dy: 0.0))
+                        }
+                        
+                    }
+                    
+                    if ySpeed <= 1000.0 {
+                        child.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 10))
+                    }
+                    
+                    if speed > maxSpeed {
+                        child.physicsBody?.linearDamping = 0.2
+                    }
+                    else {
+                        child.physicsBody?.linearDamping = 0.0
+                    }
+                
+                }
+            }
+        }
+        
+        else if firstBody.categoryBitMask == Ball.ballCategory && secondBody.categoryBitMask == GameScene.bottomCategory {
+//            print("ball&bottom")
+        }
+        
+        else if firstBody.categoryBitMask == Ball.ballCategory && secondBody.categoryBitMask == Brick.brickCategory  {
+//            print("ball&brick")
+            
+        }
+       
+      
     }
 
 }
