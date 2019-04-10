@@ -20,6 +20,8 @@
 		B239C02F22553B0D00526D2A /* Brick.swift in Sources */ = {isa = PBXBuildFile; fileRef = B239C02E22553B0D00526D2A /* Brick.swift */; };
 		B239C0332255402600526D2A /* BricksHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B239C0322255402600526D2A /* BricksHandler.swift */; };
 		D40253FE2253F01000B44367 /* Paddle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40253FD2253F01000B44367 /* Paddle.swift */; };
+		D4B608E4225BE67600303265 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B608E3225BE67600303265 /* spark.png */; };
+		D4B608EA225BEB1200303265 /* explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = D4B608E9225BEB1200303265 /* explosion.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		B239C02E22553B0D00526D2A /* Brick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brick.swift; sourceTree = "<group>"; };
 		B239C0322255402600526D2A /* BricksHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BricksHandler.swift; sourceTree = "<group>"; };
 		D40253FD2253F01000B44367 /* Paddle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paddle.swift; sourceTree = "<group>"; };
+		D4B608E3225BE67600303265 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		D4B608E9225BEB1200303265 /* explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosion.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		07B8C8AE225290BB00629AD2 /* Bricks */ = {
 			isa = PBXGroup;
 			children = (
+				D4B608E2225BE65000303265 /* Explotion */,
 				B239C034225541E500526D2A /* Bricks */,
 				07B8C8AF225290BB00629AD2 /* AppDelegate.swift */,
 				07B8C8B1225290BB00629AD2 /* ViewController.swift */,
@@ -149,6 +154,15 @@
 				B239C02E22553B0D00526D2A /* Brick.swift */,
 			);
 			path = Bricks;
+			sourceTree = "<group>";
+		};
+		D4B608E2225BE65000303265 /* Explotion */ = {
+			isa = PBXGroup;
+			children = (
+				D4B608E3225BE67600303265 /* spark.png */,
+				D4B608E9225BEB1200303265 /* explosion.sks */,
+			);
+			path = Explotion;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,7 +270,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				07B8C8BA225290BC00629AD2 /* LaunchScreen.storyboard in Resources */,
+				D4B608E4225BE67600303265 /* spark.png in Resources */,
 				07B8C8B7225290BC00629AD2 /* Assets.xcassets in Resources */,
+				D4B608EA225BEB1200303265 /* explosion.sks in Resources */,
 				07B8C8B5225290BB00629AD2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,6 +483,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 27MUBRMHKJ;
 				INFOPLIST_FILE = Bricks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -485,6 +502,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 27MUBRMHKJ;
 				INFOPLIST_FILE = Bricks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
