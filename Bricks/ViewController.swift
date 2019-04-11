@@ -11,18 +11,17 @@ import SpriteKit
 
 class ViewController: UIViewController, GameDelegate {
     
-    func gameHasEnded() {
-        print("Game has ended")
-    }
-    
-    
     let menuView : UIView = {
         let view = UIView()
         view.backgroundColor = .blue
         view.frame = CGRect(x: view.frame.midX, y: view.frame.midY, width: 100, height: 100)
         return view
     }()
-
+    
+    func gameHasEnded() {
+        view.addSubview(menuView)
+    }
+    
     @IBOutlet weak var skView: SKView!
     
     override func viewDidLoad() {
@@ -30,7 +29,7 @@ class ViewController: UIViewController, GameDelegate {
         
         let gameScene = GameScene(size: skView.bounds.size)
         gameScene.scaleMode = .aspectFill
-        
+        gameScene.endedGameDelegate = self
         skView.presentScene(gameScene)
         
         // Change this when the paddle is implemented
