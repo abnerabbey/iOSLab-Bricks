@@ -20,15 +20,19 @@ class ViewController: UIViewController, GameDelegate {
     
     let scoreLabel : UILabel = {
         let label = UILabel()
-        label.backgroundColor = .yellow
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .yellow
+        label.font = UIFont(name: "Chalkduster", size: 20)
+        label.textAlignment = NSTextAlignment(.center)
         return label
     }()
     
     let startAgainButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.backgroundColor = .red
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .red
+        button.tintColor = .yellow
+        button.titleLabel?.font = UIFont(name: "Chalkduster", size: 20)
         button.setTitle("New Game?", for: .normal)
         return button
     }()
@@ -49,6 +53,14 @@ class ViewController: UIViewController, GameDelegate {
         startAgainButton.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: midYCoordinate / 3).isActive = true
         
         startAgainButton.heightAnchor.constraint(equalToConstant: parentHeight / 4).isActive = true
+        
+        startAgainButton.addTarget(self, action: #selector(startGame), for: .touchUpInside)
+    }
+    
+    @objc private func startGame() {
+        print("now trying to start game again")
+        startGameView.removeFromSuperview()
+        viewDidLoad()
     }
     
     private func setupScoreLabel(with parent: UIView){
