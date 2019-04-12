@@ -12,9 +12,11 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var bricksHandler = BricksHandler()
+    var endedGameDelegate: GameDelegate?
     
     var paddle: Paddle?
     var movingPaddle = false
+    private let bottom = SKSpriteNode()
     
     var gameScore: SKLabelNode!
     var score = 0 {
@@ -47,7 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         setupPaddle()
         setUpBall()
         setupScoreLabel()
-        bottomBoundary()
+        setupBottomBoundary()
 
     }
     
@@ -87,8 +89,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    func bottomBoundary() {
-        let bottom =  SKSpriteNode()
+    func setupBottomBoundary() {
         bottom.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: 1))
         bottom.physicsBody?.categoryBitMask = GameScene.bottomCategory
         addChild(bottom)
@@ -142,6 +143,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
         
@@ -202,7 +204,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         else if firstBody.categoryBitMask == Ball.ballCategory && secondBody.categoryBitMask == GameScene.bottomCategory {
-//            print("ball&bottom")
+            ballGame.removeFromParent()
+            endedGameDelegate?.gameHasEnded(with: score)
         }
         
         else if firstBody.categoryBitMask == Ball.ballCategory && secondBody.categoryBitMask == Brick.brickCategory  {
