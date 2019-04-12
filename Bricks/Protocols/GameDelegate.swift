@@ -9,5 +9,5 @@
 import Foundation
 
 protocol GameDelegate {
-    func gameHasEnded()
+    func gameHasEnded(with score: Int)
 }

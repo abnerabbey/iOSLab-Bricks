@@ -18,6 +18,32 @@ class ViewController: UIViewController, GameDelegate {
         return view
     }()
     
+    let scoreLabel : UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .yellow
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    
+    var gameScore = 0 {
+        willSet {
+            scoreLabel.text = "Score: \(newValue)"
+        }
+    }
+    
+    private func setupScoreLabel(with parent: UIView){
+        
+        let midXCoordinate = view.frame.midX / 4
+        let midYCoordinate = view.frame.midY / 4
+        
+        scoreLabel.leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: midXCoordinate).isActive = true
+        scoreLabel.trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -midXCoordinate).isActive = true
+        scoreLabel.topAnchor.constraint(equalTo: parent.topAnchor, constant: midYCoordinate).isActive = true
+        
+        scoreLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    }
+    
     private func setupStartGameView() {
         startGameView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: (view.frame.midX)/3).isActive = true
         startGameView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -(view.frame.midX)/3).isActive = true
@@ -25,9 +51,13 @@ class ViewController: UIViewController, GameDelegate {
         startGameView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(view.frame.midY)/2).isActive = true
     }
     
-    func gameHasEnded() {
+    func gameHasEnded(with score: Int) {
         view.addSubview(startGameView)
         setupStartGameView()
+        
+        startGameView.addSubview(scoreLabel)
+        gameScore = score
+        setupScoreLabel(with: startGameView)
     }
     
     @IBOutlet weak var skView: SKView!

@@ -205,7 +205,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         else if firstBody.categoryBitMask == Ball.ballCategory && secondBody.categoryBitMask == GameScene.bottomCategory {
             ballGame.removeFromParent()
-            endedGameDelegate?.gameHasEnded()
+            endedGameDelegate?.gameHasEnded(with: score)
         }
         
         else if firstBody.categoryBitMask == Ball.ballCategory && secondBody.categoryBitMask == Brick.brickCategory  {
