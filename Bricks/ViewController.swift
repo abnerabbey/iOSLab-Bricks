@@ -25,6 +25,13 @@ class ViewController: UIViewController, GameDelegate {
         return label
     }()
     
+    let startAgainButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.backgroundColor = .red
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("New Game?", for: .normal)
+        return button
+    }()
     
     var gameScore = 0 {
         willSet {
@@ -32,16 +39,28 @@ class ViewController: UIViewController, GameDelegate {
         }
     }
     
-    private func setupScoreLabel(with parent: UIView){
-        
+    private func setupStartAgainButton(with parent: UIView) {
         let midXCoordinate = view.frame.midX / 4
         let midYCoordinate = view.frame.midY / 4
+        let parentHeight = view.frame.midY / 2
+        
+        startAgainButton.leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: midXCoordinate).isActive = true
+        startAgainButton.trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -midXCoordinate).isActive = true
+        startAgainButton.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: midYCoordinate / 3).isActive = true
+        
+        startAgainButton.heightAnchor.constraint(equalToConstant: parentHeight / 4).isActive = true
+    }
+    
+    private func setupScoreLabel(with parent: UIView){
+        let midXCoordinate = view.frame.midX / 4
+        let midYCoordinate = view.frame.midY / 4
+        let parentHeight = view.frame.midY / 2
         
         scoreLabel.leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: midXCoordinate).isActive = true
         scoreLabel.trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -midXCoordinate).isActive = true
         scoreLabel.topAnchor.constraint(equalTo: parent.topAnchor, constant: midYCoordinate).isActive = true
         
-        scoreLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        scoreLabel.heightAnchor.constraint(equalToConstant: parentHeight / 4).isActive = true
     }
     
     private func setupStartGameView() {
@@ -58,6 +77,9 @@ class ViewController: UIViewController, GameDelegate {
         startGameView.addSubview(scoreLabel)
         gameScore = score
         setupScoreLabel(with: startGameView)
+        
+        startGameView.addSubview(startAgainButton)
+        setupStartAgainButton(with: startGameView)
     }
     
     @IBOutlet weak var skView: SKView!
