@@ -11,15 +11,23 @@ import SpriteKit
 
 class ViewController: UIViewController, GameDelegate {
     
-    let menuView : UIView = {
+    let startGameView : UIView = {
         let view = UIView()
         view.backgroundColor = .blue
-        view.frame = CGRect(x: view.frame.midX, y: view.frame.midY, width: 100, height: 100)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
+    private func setupStartGameView() {
+        startGameView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: (view.frame.midX)/3).isActive = true
+        startGameView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -(view.frame.midX)/3).isActive = true
+        startGameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: (view.frame.midY)/2).isActive = true
+        startGameView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(view.frame.midY)/2).isActive = true
+    }
+    
     func gameHasEnded() {
-        view.addSubview(menuView)
+        view.addSubview(startGameView)
+        setupStartGameView()
     }
     
     @IBOutlet weak var skView: SKView!
